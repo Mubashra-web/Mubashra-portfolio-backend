@@ -46,7 +46,7 @@ const uploadProjectImages = multer({
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: (_req, file, cb) => {
       const ext = path.extname(file.originalname).toLowerCase();
-      const unique = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;
+      const unique = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
       cb(null, `projects/project-${unique}${ext}`);
     },
   }),
@@ -68,6 +68,7 @@ async function deleteFromS3(url) {
     console.error('Failed to delete S3 object:', key, err.message);
   }
 }
+
 // ---------- Resume (PDF/DOC, uploaded straight to S3) ----------
 const RESUME_TYPES = [
   'application/pdf',
@@ -87,11 +88,12 @@ const uploadResume = multer({
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: (_req, file, cb) => {
       const ext = path.extname(file.originalname).toLowerCase();
-      const unique = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;
+      const unique = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
       cb(null, `resume/resume-${unique}${ext}`);
     },
   }),
   fileFilter: resumeFileFilter,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
 });
+
 module.exports = { upload, uploadProjectImages, uploadResume, UPLOAD_DIR, deleteFromS3 };
