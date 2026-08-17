@@ -22,7 +22,7 @@ const getProfile = asyncHandler(async (_req, res) => {
 
 const updateProfile = asyncHandler(async (req, res) => {
   const allowed = [
-    'name', 'title', 'bio', 'email', 'phone', 'location',
+    'name', 'title', 'bio', 'aboutBio', 'email', 'phone', 'location',
     'github', 'linkedin', 'twitter', 'website', 'resumeUrl',
   ];
   const update = {};
