@@ -9,6 +9,7 @@ const projectController = require('../controllers/projectController');
 const skillController = require('../controllers/skillController');
 const experienceController = require('../controllers/experienceController');
 const educationController = require('../controllers/educationController');
+const courseController = require('../controllers/courseController');
 
 const router = express.Router();
 
@@ -20,5 +21,6 @@ router.use('/projects', projectRoutes);
 router.use('/skills', crudRoutes(skillController));
 router.use('/experience', crudRoutes(experienceController));
 router.use('/education', crudRoutes(educationController));
+router.use('/courses', crudRoutes(courseController));
 
 module.exports = router;
